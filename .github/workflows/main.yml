@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+  workflow_dispatch:
+
+jobs:
+  ansible:
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
+      ANSIBLE_HOST_KEY_CHECKING: False
+      
+      
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Check Files
+        run: ls -aR
+          
+      - name: Test Ansible
+        run: ansible --version
+        
+        
+      
+        
+        
+        
+        
+    
